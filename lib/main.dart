@@ -5,9 +5,9 @@ import 'package:utilidades/dartAvancado/stream/busca_com_stream.dart';
 import 'package:utilidades/src/app/app_widget.dart';
 
 void main() {
-  //runApp(AppWidget());
+  runApp(AppWidget());
   //runApp(MaterialApp(home: Login(),));
 
-  runApp(MaterialApp(home: ProductParse(),));
+ // runApp(MaterialApp(home: ProductParse(),));
 }
 
