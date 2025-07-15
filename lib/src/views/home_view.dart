@@ -10,11 +10,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  @override
-  void initState() {
-    super.initState();
-    AuthService().checkLogin(context);
-  }
 
   @override
   Widget build(BuildContext context) {
