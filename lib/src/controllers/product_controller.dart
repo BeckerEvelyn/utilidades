@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:utilidades/services/product_service.dart';
+
 import 'package:utilidades/src/models/product_model.dart';
+import 'package:utilidades/src/services/product_service.dart';
 
 class ProductController {
   final ProductService _service = ProductService();

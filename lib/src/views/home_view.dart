@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:utilidades/services/auth_service.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

@@ -6,8 +6,9 @@ import 'package:utilidades/src/app/app_widget.dart';
 
 void main() {
   runApp(AppWidget());
-  //runApp(MaterialApp(home: Login(),));
-
- // runApp(MaterialApp(home: ProductParse(),));
+  /* 
+  riverpold - é um gerenciador de estado flexível e poderoso.
+  usa provider para controlar e gerenciar os estados da aplicação
+   */
 }
 

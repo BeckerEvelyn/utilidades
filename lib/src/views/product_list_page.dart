@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:utilidades/src/controllers/product_controller.dart';
 import 'package:utilidades/src/models/product_model.dart';
 import 'package:utilidades/src/views/product_form.dart';
@@ -13,6 +14,7 @@ class ProductListPage extends StatefulWidget {
 class _ProductListPageState extends State<ProductListPage> {
   final _controller = ProductController();
   late Future<List<ProductModel>> _produtos;
+  final currencyFormat =  NumberFormat.simpleCurrency(locale: 'pt_BR');
 
   @override
   void initState() {
@@ -31,6 +33,34 @@ class _ProductListPageState extends State<ProductListPage> {
       context: context,
       builder: (_) => ProductForm(produto: produto, controller: _controller,),
     );
+
+    if(resultado == true){
+      _loadProdutos();
+    }
+  }
+
+  void _excluirproduto(int id) async{
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("confirme a exclusão"),
+        content: const Text("Deseja excluir este item?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false), 
+            child: Text("Cancelar"),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, true), 
+              child: Text("Confirmar"),
+              )
+        ],
+      )
+    );
+    if(confirm == true) {
+      await _controller.deletarProduto(id);
+      _loadProdutos();
+    }
   }
 
   @override
@@ -55,7 +85,7 @@ class _ProductListPageState extends State<ProductListPage> {
               return ListTile(
                 title: Text(p.nome),
                 subtitle: Text(
-                  "Preço: ${p.preco} \n Descrição: ${p.descricao}",
+                  "Preço: ${currencyFormat.format(p.preco)} \n Descrição: ${p.descricao}",
                   ),
                   isThreeLine: true,
                   trailing: Row(
@@ -66,7 +96,7 @@ class _ProductListPageState extends State<ProductListPage> {
                         icon: Icon(Icons.edit)
                       ),
                       IconButton(
-                        onPressed: (){},
+                        onPressed: () => _excluirproduto(p.id!),
                         icon: Icon(Icons.delete)
                         ),
                     ],

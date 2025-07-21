@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:utilidades/services/auth_service.dart';
+
 import 'package:utilidades/src/models/product_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:utilidades/src/services/auth_service.dart';
 
 class ProductService {
 

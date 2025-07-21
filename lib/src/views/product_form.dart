@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:flutter_multi_formatter/formatters/currency_input_formatter.dart';
 import 'package:utilidades/src/controllers/product_controller.dart';
 import 'package:utilidades/src/models/product_model.dart';
 
@@ -64,6 +66,14 @@ class _ProductFormState extends State<ProductForm> {
             TextFormField(
               controller: _precoController,
               keyboardType: TextInputType.number,
+              inputFormatters: [
+                CurrencyInputFormatter(
+                  leadingSymbol: "R\$",
+                  useSymbolPadding: true,
+                  thousandSeparator: ThousandSeparator.Period,
+                  mantissaLength: 2,
+                )
+              ],
               decoration: const InputDecoration(labelText: "Preço do produto"),
               validator: (v) => v!.isEmpty ? "Informe uma descrição" : null,
             )
