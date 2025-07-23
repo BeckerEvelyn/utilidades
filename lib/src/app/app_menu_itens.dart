@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:utilidades/src/models/menu_model.dart';
 import 'package:utilidades/src/views/about_view.dart';
+import 'package:utilidades/src/views/alunos_view.dart';
 import 'package:utilidades/src/views/bloc_example_view.dart';
 import 'package:utilidades/src/views/converter_view.dart';
 import 'package:utilidades/src/views/home_view.dart';
@@ -58,5 +59,11 @@ final List<MenuModel> appMenuItems = [
       icon: Icons.settings_backup_restore, 
       route: "/bloc", 
       page: BlocExampleView(),
+    ),
+    MenuModel(
+      title: "Alunos", 
+      icon: Icons.school, 
+      route: "/alunos", 
+      page: AlunosView(),
     ),
 ];
