@@ -1,3 +1,4 @@
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -8,7 +9,23 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+String saudacao = FirebaseRemoteConfig.instance.getString('saudacao');
 
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseRemoteConfig.instance.fetchAndActivate();
+    FirebaseRemoteConfig.instance.onConfigUpdated.listen((event) async {
+      await FirebaseRemoteConfig.instance.activate();
+
+      if(mounted){
+        setState(() {
+          saudacao = FirebaseRemoteConfig.instance.getString('saudacao');
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +33,7 @@ class _HomeViewState extends State<HomeView> {
       padding: EdgeInsets.all(24),
       child: ListView(
         children: [
+          Text(saudacao),
           Text(
             "Aplicativo de estudos Flutter",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
